@@ -1,0 +1,50 @@
+@font-face {
+    font-family: Roboto-Light;
+    src: url('/fonts/Roboto-Light.ttf');
+}
+
+.logo-flair {
+	background: url(https://osbot.org/images/forum/fireworksForName.gif);
+    color: #E50000;
+    font-weight: bold;
+    text-shadow: 0 0 0.9em #E50000;
+}
+
+.user-flair {
+	background: url(https://osbot.org/images/forum/fireworksForName.gif); 
+	color: black; 
+	font-weight: bold; 
+	text-shadow: 0 0 5px white;
+}
+
+.thread-index__headline {
+	/*color: #9932CD;*/
+}
+
+.thread-preview__thumbnail {
+	width: 100%;
+}
+
+.thread-preview__user-icon {
+	height: 54px;
+	width: 54px;
+}
+
+.thread-preview__title {
+	position: absolute;
+	top: 0;
+	left: 13.5%;
+	font-size: 22px;	
+	font-weight: bold;
+}
+
+.thread-preview__user {
+	position: absolute;
+	top: 40px;
+	left: 13.5%;
+	font-size: 13px;
+}
+
+.thread-preview__description {
+	margin-top: 12.5px;
+}

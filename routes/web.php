@@ -19,3 +19,7 @@ Auth::routes();
 
 Route::get('/threads', 'ThreadController@index');
 Route::get('/threads/{id}', 'ThreadController@show');
+
+Route::group(['middleware' => ['auth']], function () {
+    //
+});
