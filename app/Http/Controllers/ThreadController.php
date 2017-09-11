@@ -13,11 +13,21 @@ class ThreadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $s = $request->input("s");
+        $threads = Thread::with("tag")
+            ->search($s)
+            ->get();
+
+        if ($s) {
+            // Flash message
+        }           
+
         return view('thread.index', [
             "tags" => Tag::all(),
-            "threads" => Thread::with("tag")->get()
+            "threads" => $threads,
+            "s" => $s
         ]);
     }
 

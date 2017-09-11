@@ -3,6 +3,10 @@
     src: url('/fonts/Roboto-Light.ttf');
 }
 
+a:hover {
+	color: inherit;
+}
+
 .logo-flair {
 	background: url(https://osbot.org/images/forum/fireworksForName.gif);
     color: #E50000;
@@ -28,6 +32,14 @@
 
 .thread-index__headline {
 	/*color: #9932CD;*/
+}
+
+.thread-index__search {
+	width: 300px;
+}
+
+.thread-index__search-button {
+	cursor: pointer;
 }
 
 .thread-preview__thumbnail {

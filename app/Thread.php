@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Thread extends Model
 {
     public function path() {
-    	return "/threads/" . $thread->id;
+    	return "/threads/" . $this->tag->name . "/" . $this->id;
     }
 
     public function user() {
@@ -16,5 +16,11 @@ class Thread extends Model
 
     public function tag() {
     	return $this->belongsTo(Tag::class);
+    }
+
+    public function scopeSearch($query, $s) {
+    	return $query->where("title", "like", "%" . $s . "%")
+    		->orWhere("description", "like", "%" . $s . "%")
+    		->orWhere("body", "like", "%" . $s . "%");
     }
 }
