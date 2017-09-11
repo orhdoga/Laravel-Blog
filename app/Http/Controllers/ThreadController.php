@@ -32,7 +32,7 @@ class ThreadController extends Controller
     }
 
     public function sortByTag(Tag $tag) {
-        $threads = $tag->threads;
+        $threads = $tag->threads()->paginate(10);
 
         return view("thread.index", [
             "threads" => $threads
