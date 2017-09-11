@@ -6,8 +6,13 @@
 
 	<div class="row">	
 
-		<div class="col-md-12">
-			<h1 class="thread-index__headline">Latest blogs!</h1>
+		<div class="col-md-6">
+			<h1 class="thread-index__headline"><i class="fa fa-rss" aria-hidden="true"></i> Latest blogs!</h1>
+			<!--<div class="btn-group" class="thread-index__filter">
+				<button type="button" class="btn btn-primary">Apple</button>
+				<button type="button" class="btn btn-primary">Samsung</button>
+				<button type="button" class="btn btn-primary">Sony</button>
+			</div>-->
 			<hr>
 		</div>
 
@@ -27,14 +32,14 @@
 			<div class="col-md-6">
 			
 				<div class="thumbnail">
-		            <img src="{{ asset("/thumbnails/" . $thread->thumbnail) }}" alt="" class="thread-preview__thumbnail">
+		            <img src="{{ asset("/thumbnails/$thread->thumbnail") }}" alt="" class="thread-preview__thumbnail img-responsive">
 	            	<div class="caption" style="position: relative;">
-	            		<img src="{{ asset("/icons/user-icon.jpg") }}" class="thread-preview__user-icon">
+	            		<img src="{{ asset("/icons/" . $thread->user->icon) }}" class="thread-preview__user-icon img-responsive">
 	                	<h4 class="thread-preview__title">
 	                		@if (strlen($thread->title) > 40)
-	                			{{ substr($thread->title, 0, 40) }}..
+	                			{{ ucfirst(substr($thread->title, 0, 40)) }}..
 	                		@else
-	                			{{ $thread->title }}	
+	                			{{ ucfirst($thread->title) }}
 	                		@endif	
 	                	</h4>
 	                	<p class="thread-preview__user">Started by <span class="user-flair">{{ $thread->user->name }}</span>, {{ $thread->created_at->diffForHumans() }}</p>

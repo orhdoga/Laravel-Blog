@@ -13,6 +13,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/global.css') }}" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -40,7 +41,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li {{{ (Request::is('threads') ? 'class=active' : '') }}}>
-                            <a href="{{ url('/threads') }}">Community</a>
+                            <a href="{{ url('/threads') }}"><i class="fa fa-users" aria-hidden="true"></i> Community</a>
                         </li>
                     </ul>
 
@@ -52,11 +53,17 @@
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="position: relative; padding-left: 50px;">
+                                    <img src="{{ asset("/icons/" . Auth::user()->icon) }}" class="user-menu-icon">
                                     <span class="user-flair">{{ Auth::user()->name }}</span> <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#">
+                                            Profile
+                                        </a>
+                                    </li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

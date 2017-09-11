@@ -7,7 +7,7 @@ $factory->define(App\Thread::class, function (Faker $faker) {
     	'user_id' => function () {
             return factory(App\User::class)->create()->id;
         },
-        "thumbnail" => "thumbnail-" . rand(1, 11) . ".jpg",
+        "thumbnail" => "thumbnail-" . rand(1, 12) . ".jpg",
         "title" => $faker->sentence,
         "description" => $faker->paragraph,
         "body" => $faker->paragraph
