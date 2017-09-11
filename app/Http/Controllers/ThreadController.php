@@ -18,10 +18,10 @@ class ThreadController extends Controller
         $s = $request->input("s");
         $threads = Thread::with("tag")
             ->search($s)
-            ->get();
+            ->paginate(10);
 
         if ($s) {
-            // Flash message
+            // Flash message..
         }           
 
         return view('thread.index', [
