@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Thread;
+use App\{Tag, Thread};
 
 class ThreadController extends Controller
 {
@@ -16,7 +16,16 @@ class ThreadController extends Controller
     public function index()
     {
         return view('thread.index', [
-            "threads" => Thread::all()
+            "tags" => Tag::all(),
+            "threads" => Thread::with("tag")->get()
+        ]);
+    }
+
+    public function sortByTag(Tag $tag) {
+        $threads = $tag->threads;
+
+        return view("thread.index", [
+            "threads" => $threads
         ]);
     }
 
@@ -47,9 +56,9 @@ class ThreadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Thread $id)
+    public function show(Tag $tag, Thread $thread)
     {
-        return $id;
+        return $thread;
     }
 
     /**

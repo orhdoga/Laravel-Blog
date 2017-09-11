@@ -18,7 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/threads', 'ThreadController@index');
-Route::get('/threads/{id}', 'ThreadController@show');
+Route::get('/threads/{tag}', 'ThreadController@sortByTag');
+Route::get('/threads/{tag}/{thread}', 'ThreadController@show');
 
 Route::group(['middleware' => ['auth']], function () {
     //

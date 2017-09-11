@@ -40,8 +40,19 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li {{{ (Request::is('threads') ? 'class=active' : '') }}}>
+                        <li {{{ (Request::is('threads') ? 'class=active' : '') }}}
+                        @foreach ($tags as $tag) {
+                            @if (Request::is('threads/' . $tag->name))
+                                {{ "class=active" }}
+                            @else
+                                {{ "" }}
+                            @endif
+                        @endforeach    
+                        >
                             <a href="{{ url('/threads') }}"><i class="fa fa-users" aria-hidden="true"></i> Community</a>
+                        </li>
+                        <li {{{ (Request::is('threads/create') ? 'class=active' : '') }}}>
+                            <a href="{{ url('/threads/create') }}"><i class="fa fa-plus-square" aria-hidden="true"></i> New Thread</a>
                         </li>
                     </ul>
 

@@ -17,6 +17,7 @@ class CreateThreadsTable extends Migration
             $table->increments('id');
             $table->integer("user_id")->unsigned();
             $table->foreign("user_id")->references("id")->on("users");
+            $table->integer("tag_id");
             $table->string("thumbnail");
             $table->string("title");
             $table->text("description");
