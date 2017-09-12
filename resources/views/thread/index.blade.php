@@ -24,7 +24,17 @@
 					<a href="{{ url("/threads/" . $tag->name) }}" class="btn btn-primary {{ (Request::is('threads/' . $tag->name) ? 'active' : '') }}">{{ $tag->name }}</a>
 				@endforeach
 			</div>
-	
+
+			@if (isset($s))
+				<br>
+				<br>
+
+                Found 
+                <span style="color: green;">
+                	{{ count($threads) }} result(s)
+                </span>.             
+			@endif
+
 		</div>
 
 		<div class="col-md-6">
@@ -42,14 +52,14 @@
 
 	</div>	
 
-	<hr>	
+	<hr>  	
 
-	<?
+	@php
 	
 	$numOfCols = 2;
 	$rowCount = 0;
 	
-	?>
+	@endphp
 
 	<div class="row">
 
@@ -80,15 +90,13 @@
 
 			</div>
 
-	<?
+	@php
+    	$rowCount++;
+	@endphp
 
-    $rowCount++;
-    
-    if ($rowCount % $numOfCols == 0) {
-    	echo '</div><div class="row">';
-	}
-
-	?>
+    @if ($rowCount % $numOfCols == 0)
+    	</div><div class="row">
+	@endif
 
 	@endforeach
 

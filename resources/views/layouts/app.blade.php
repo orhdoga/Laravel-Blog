@@ -41,8 +41,15 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li {{{ (Request::is('threads') ? 'class=active' : '') }}}
+
+                        @php
+                            $threadId = isset($thread->id) ? $thread->id : "";
+                        @endphp
+
                         @foreach ($tags as $tag) {
                             @if (Request::is('threads/' . $tag->name))
+                                {{ "class=active" }}
+                            @elseif (Request::is('threads/' . $tag->name . '/' . $threadId))
                                 {{ "class=active" }}
                             @else
                                 {{ "" }}
