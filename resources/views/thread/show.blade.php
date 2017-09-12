@@ -32,16 +32,27 @@
 						<div class="panel panel-default">
 
 							<div class="panel-heading">
+
 								<i class="fa fa-commenting" aria-hidden="true"></i>
 								<a href="#">
 									{{ $comment->user->name }}
 								</a> said {{ $comment->created_at->diffForHumans() }}...
+								
+								<form 
+								action="{{ 
+								url($thread->path() . "/" . $comment->id) }}" 
+								class="thread-show__comment-delete" method="POST">
+									{{ method_field("DELETE") }}
+									{{ csrf_field() }}
+									<button type="submit" class="close">&times;</button>
+								</form>
+
 							</div>
 
 							<div class="panel-body">
 								<div class="body">{{ $comment->body }}</div>
 							</div>
-							
+
 						</div>
 					@endforeach		
 				@endif

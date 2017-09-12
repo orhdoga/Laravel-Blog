@@ -23,4 +23,5 @@ Route::get('/threads/{tag}/{thread}', 'ThreadController@show');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::post('/threads/{tag}/{thread}', 'ThreadController@postComment');
+    Route::delete('/threads/{tag}/{thread}/{comment}', 'ThreadController@deleteComment');
 });

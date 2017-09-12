@@ -71,3 +71,7 @@ a:hover {
 .thread-preview__description {
 	margin-top: 12.5px;
 }
+
+.thread-show__comment-delete {
+	display: inline;
+}

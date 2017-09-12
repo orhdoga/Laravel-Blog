@@ -67,6 +67,13 @@ class ThreadController extends Controller
         return redirect($thread->path());
     }
 
+    public function deleteComment(Tag $tag, Thread $thread, Comment $comment) {
+
+        $comment->delete();
+
+        return redirect($thread->path());
+    }
+
     /**
      * Display the specified resource.
      *
