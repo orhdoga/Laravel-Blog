@@ -3,3 +3,23 @@
 		display: inline;
 	}	
 }
+
+.tag {
+	background-color: #00b1b3; 
+	color: #fff; 
+	border-radius: 290486px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    font-size: 12px;
+    height: 24px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    line-height: 16px;
+    padding-left: 10px;
+    padding-right: 10px;
+}

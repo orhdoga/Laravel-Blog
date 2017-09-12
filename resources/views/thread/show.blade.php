@@ -6,12 +6,51 @@
 
 	<div class="row">
 
-			<div class="col-md-8">
+			<div class="col-md-3">
+
+				<div class="well text-center" style="height: 185px;">
+
+					<img src="{{ url("/icons/" . $thread->user->icon) }}" class="img-responsive" style="height: 100px; width: 110px; margin: 0 auto;">
+					<a href="#" class="user-flair">{{ $thread->user->name }}</a>
+					<p>Posts: {{ count(auth()->user()->threads()) }}
+
+				</div>
+
+				<div class="panel panel-warning">
+
+					<div class="panel-body">
+
+						<div class="body">
+							This thread was published 
+							{{ $thread->created_at->diffForHumans() }}, 
+							and currently has {{ count($comments) }} 
+							{{ str_plural('comment', count($comments)) }}.
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="panel panel-default">
+
+					<div class="panel-body">
+
+						<div class="body">
+							Category: <a href="{{ url("/threads/" . $thread->tag->name) }}" class="tag">{{ $thread->tag->name }}</a>
+						</div>
+						
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="col-md-9">
 
 				<div class="panel panel-default">
 
 					<div class="panel-heading" style="padding: 0;">
-						<img src="{{ url("/thumbnails/" . $thread->thumbnail) }}" style="width: 100%;">
+						<img src="{{ url("/thumbnails/" . $thread->thumbnail) }}" class="img-responsive" style="width: 100%;">
 					</div>
 
 					<div class="panel-heading">
@@ -33,10 +72,8 @@
 
 							<div class="panel-heading">
 
-								<i class="fa fa-commenting" aria-hidden="true"></i>
-								<a href="#">
-									{{ $comment->user->name }}
-								</a> said {{ $comment->created_at->diffForHumans() }}...
+								<img src="{{ url("/icons/" . $comment->user->icon) }}" style="height: 32px; width: 32px; border-radius: 50%;">
+								<a href="#">{{ $comment->user->name }}</a> said {{ $comment->created_at->diffForHumans() }}...
 								
 								<form 
 								action="{{ 
@@ -54,7 +91,8 @@
 							</div>
 
 						</div>
-					@endforeach		
+					@endforeach	
+						
 				@endif
 
 				@if (Auth::check())
@@ -75,20 +113,6 @@
 						Please <a href="{{ route('login') }}">sign in</a> to participate in this discussion.
 					</p>	
 				@endif		
-
-			</div>
-
-			<div class="col-md-4">
-
-				<div class="panel panel-default">
-
-					<div class="panel-body">
-						<div class="body">
-							<p style="margin: 0;">Posted by <a href="#">{{ $thread->user->name }}</a>, {{ $thread->created_at->diffForHumans() }}</p>
-						</div>
-					</div>
-
-				</div>
 
 			</div>	
 

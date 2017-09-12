@@ -19,10 +19,13 @@
 		<div class="col-md-6">
 
 			<div class="btn-group thread-index__filter">
+				
 				<a href="{{ url("/threads") }}" class="btn btn-primary {{ (Request::is('threads') ? 'active' : '') }}">All</a>
+				
 				@foreach ($tags as $tag)
 					<a href="{{ url("/threads/" . $tag->name) }}" class="btn btn-primary {{ (Request::is('threads/' . $tag->name) ? 'active' : '') }}">{{ $tag->name }}</a>
 				@endforeach
+
 			</div>
 
 			@if (isset($s))
@@ -31,7 +34,7 @@
 
                 Found 
                 <span style="color: green;">
-                	{{ count($threads) }} result(s).
+                	{{ count($threads) }} {{ str_plural('result', count($threads)) }}
                 </span>             
 			@endif
 
@@ -40,12 +43,17 @@
 		<div class="col-md-6">
 
 			<form id="form1" action="{{ url("/threads") }}" method="GET">
-			<div class="input-group thread-index__search pull-right">
 				
-				<input type="text" class="form-control" placeholder="Search by thread.." name="s" value="{{ isset($s) ? $s : "" }}">
-				<a class="input-group-addon thread-index__search-button" onclick="document.getElementById('form1').submit();"><i class="fa fa-search" aria-hidden="true"></i></a>
+				<div class="input-group thread-index__search pull-right">
 
-			</div>
+					<input type="text" class="form-control" placeholder="Search by thread.." name="s" value="{{ isset($s) ? $s : "" }}">
+
+					<a class="input-group-addon thread-index__search-button" onclick="document.getElementById('form1').submit();">
+						<i class="fa fa-search" aria-hidden="true"></i>
+					</a>
+
+				</div>
+
 			</form>
 
 		</div>
@@ -68,9 +76,12 @@
 			<div class="col-md-6">
 			
 				<div class="thumbnail">
+		            
 		            <img src="{{ asset("/thumbnails/$thread->thumbnail") }}" alt="" class="thread-preview__thumbnail img-responsive">
+	            	
 	            	<div class="caption" style="position: relative;">
 	            		<img src="{{ asset("/icons/" . $thread->user->icon) }}" class="thread-preview__user-icon img-responsive">
+	                	
 	                	<h4 class="thread-preview__title">
 	                		@if (strlen($thread->title) > 40)
 	                			{{ ucfirst(substr($thread->title, 0, 40)) }}..
@@ -78,14 +89,18 @@
 	                			{{ ucfirst($thread->title) }}
 	                		@endif	
 	                	</h4>
+
 	                	<p class="thread-preview__user">Started by <span class="user-flair">{{ $thread->user->name }}</span>, {{ $thread->created_at->diffForHumans() }}</p>
+
 	                	<p class="thread-preview__description">{{ $thread->description }}</p>
+
 	                	<a href="{{ url($thread->path()) }}">
 	                		<button class="btn btn-primary">
 	                			Read more..
 	              	        </button>  			
 	                	</a>
 	               	</div>
+
 	            </div>
 
 			</div>
