@@ -23,4 +23,8 @@ class Thread extends Model
     		->orWhere("description", "like", "%" . $s . "%")
     		->orWhere("body", "like", "%" . $s . "%");
     }
+
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
 }

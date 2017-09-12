@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\{Tag, Thread};
+use App\{Tag, Thread, Comment};
 
 class ThreadController extends Controller
 {
@@ -68,7 +68,10 @@ class ThreadController extends Controller
      */
     public function show(Tag $tag, Thread $thread)
     {
-        return $thread;
+        return view("thread.show", [
+            "thread" => $thread,
+            "comments" => $thread->comments
+        ]);
     }
 
     /**
