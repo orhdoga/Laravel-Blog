@@ -57,8 +57,8 @@ class ThreadController extends Controller
     }
 
     public function postComment(Tag $tag, Thread $thread, Comment $comment) {
-        
-        $comment = Comment::create([
+
+        $thread->addComment([
             "user_id" => auth()->user()->id,
             "thread_id" => $thread->id,
             "body" => request()->input("body")

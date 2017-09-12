@@ -31,8 +31,8 @@
 
                 Found 
                 <span style="color: green;">
-                	{{ count($threads) }} result(s)
-                </span>.             
+                	{{ count($threads) }} result(s).
+                </span>             
 			@endif
 
 		</div>
