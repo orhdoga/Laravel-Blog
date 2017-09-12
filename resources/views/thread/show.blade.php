@@ -26,10 +26,7 @@
 
 				</div>
 
-				{{ var_dump(isset($thread->comments)) }}
-
-				@if (isset($thread->comments))
-
+				@if (count($thread->comments))
 					<div class="panel panel-default">
 
 						@foreach ($comments as $comment)
@@ -48,8 +45,7 @@
 						@endforeach	
 				
 					</div>
-
-				@endif
+				@endif	
 
 			</div>
 
