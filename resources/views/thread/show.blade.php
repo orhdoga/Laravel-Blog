@@ -27,12 +27,12 @@
 				</div>
 
 				@if (count($thread->comments))
-					<div class="panel panel-default">
 
-						@foreach ($comments as $comment)
+					@foreach ($comments as $comment)
+						<div class="panel panel-default">
 
 							<div class="panel-heading">
-								<i class="fa fa-comment" aria-hidden="true"></i>
+								<i class="fa fa-commenting" aria-hidden="true"></i>
 								<a href="#">
 									{{ $comment->user->name }}
 								</a> said {{ $comment->created_at->diffForHumans() }}...
@@ -41,11 +41,29 @@
 							<div class="panel-body">
 								<div class="body">{{ $comment->body }}</div>
 							</div>
+							
+						</div>
+					@endforeach		
+				@endif
 
-						@endforeach	
-				
+				@if (Auth::check())
+				<form method="POST" action="{{ url($thread->path()) }}">
+					{{ csrf_field() }}
+
+					<div class="form-group">
+						<textarea class="form-control" placeholder="Have something to say?" 
+						rows="5" name="body" required></textarea>
 					</div>
-				@endif	
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary"><i class="fa fa-comment" aria-hidden="true"></i> Comment</button>
+					</div>
+				</form>
+				@else
+					<p class="text-center">
+						Please <a href="{{ route('login') }}">sign in</a> to participate in this discussion.
+					</p>	
+				@endif		
 
 			</div>
 

@@ -22,5 +22,5 @@ Route::get('/threads/{tag}', 'ThreadController@sortByTag');
 Route::get('/threads/{tag}/{thread}', 'ThreadController@show');
 
 Route::group(['middleware' => ['auth']], function () {
-    //
+    Route::post('/threads/{tag}/{thread}', 'ThreadController@postComment');
 });
