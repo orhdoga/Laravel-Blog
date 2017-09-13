@@ -76,18 +76,6 @@
 
 								<img src="{{ url("/icons/" . $comment->user->icon) }}" style="height: 32px; width: 32px; border-radius: 50%;">
 								<a href="#">{{ $comment->user->name }}</a> said {{ $comment->created_at->diffForHumans() }}...
-								
-								<form 
-								action="{{ 
-								url($thread->path() . "/" . $comment->id) }}" 
-								class="thread-show__comment" method="POST" id="form1">
-									{{ method_field("DELETE") }}
-									{{ csrf_field() }}
-									<i class="fa fa-times pull-right thread-show__comment-delete" aria-hidden="true" onclick="document.getElementById('form1').submit();"></i>
-								</form>
-									<a href="{{ url($thread->path() . "/" . $comment->id . "/edit") }}" class="thread-show__comment-edit">
-										<i class="fa fa-pencil pull-right" aria-hidden="true"></i>
-									</a>	
 
 							</div>
 
@@ -101,16 +89,18 @@
 				@endif
 
 				@if (Auth::check())
-					<form method="POST" action="{{ url($thread->path()) }}">
-						{{ csrf_field() }}
+					<form method="POST" action="{{ url($thread->path() . "/" . $comment->id) }}">
+
+						{{ method_field("PATCH") }}
+						{{ csrf_field() }}	
 
 						<div class="form-group">
 							<textarea class="form-control" placeholder="Have something to say?" 
-							rows="5" name="body" required></textarea>
+							rows="5" name="body" required>{{ isset($comment) ? old("body", $comment->body) : old("body") }}</textarea>
 						</div>
 
 						<div class="form-group">
-							<button type="submit" class="btn btn-primary"><i class="fa fa-comment" aria-hidden="true"></i> Comment</button>
+							<button type="submit" class="btn btn-primary"><i class="fa fa-comment" aria-hidden="true"></i> {{ isset($comment) ? "Update Comment" : "Comment" }}</button>
 						</div>
 					</form>
 				@else

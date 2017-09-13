@@ -56,7 +56,7 @@ class ThreadController extends Controller
         //
     }
 
-    public function postComment(Tag $tag, Thread $thread, Comment $comment) {
+    public function postComment(Tag $tag, Thread $thread) {
 
         $thread->addComment([
             "user_id" => auth()->user()->id,
@@ -70,6 +70,25 @@ class ThreadController extends Controller
     public function deleteComment(Tag $tag, Thread $thread, Comment $comment) {
 
         $comment->delete();
+
+        return redirect($thread->path());
+    }
+
+    public function editComment(Tag $tag, Thread $thread, Comment $comment) {
+
+        return view("comment.edit", [
+            "thread" => $thread,
+            "comments" => $thread->comments
+        ]);
+    }
+
+    public function updateComment(Tag $tag, Thread $thread, Comment $comment) {
+
+        $thread->updateComment([
+            "user_id" => auth()->user()->id,
+            "thread_id" => $thread->id,
+            "body" => request()->input("body")
+        ]);
 
         return redirect($thread->path());
     }
