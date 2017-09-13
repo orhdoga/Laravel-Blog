@@ -42,8 +42,22 @@
   margin-top: 12.5px;
 }
 
-.thread-show__comment-delete {
+.thread-show__comment {
   display: inline;
+}
+
+.thread-show__comment-delete {
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.thread-show__comment-edit {
+  color: inherit;
+}
+
+.thread-show__comment-edit i {
+  margin-top: 8px;
+  margin-right: 5px;
 }
 
 .tag {

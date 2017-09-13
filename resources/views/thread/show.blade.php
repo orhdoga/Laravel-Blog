@@ -12,7 +12,9 @@
 
 					<img src="{{ url("/icons/" . $thread->user->icon) }}" class="img-responsive" style="height: 100px; width: 110px; margin: 0 auto;">
 					<a href="#" class="user-flair">{{ $thread->user->name }}</a>
-					<p>Posts: {{ count(auth()->user()->threads()) }}
+					<p>Posts: 
+						{{ count($thread->user->threads()) }}
+					</p>
 
 				</div>
 
@@ -78,11 +80,14 @@
 								<form 
 								action="{{ 
 								url($thread->path() . "/" . $comment->id) }}" 
-								class="thread-show__comment-delete" method="POST">
+								class="thread-show__comment" method="POST" id="form1">
 									{{ method_field("DELETE") }}
 									{{ csrf_field() }}
-									<button type="submit" class="close">&times;</button>
+									<i class="fa fa-times pull-right thread-show__comment-delete" aria-hidden="true" onclick="document.getElementById('form1').submit();"></i>
 								</form>
+									<a href="#" class="thread-show__comment-edit">
+										<i class="fa fa-pencil pull-right" aria-hidden="true"></i>
+									</a>	
 
 							</div>
 
@@ -92,7 +97,7 @@
 
 						</div>
 					@endforeach	
-						
+
 				@endif
 
 				@if (Auth::check())
