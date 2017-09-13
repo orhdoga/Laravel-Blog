@@ -75,7 +75,7 @@
 							<div class="panel-heading">
 
 								<img src="{{ url("/icons/" . $comment->user->icon) }}" style="height: 32px; width: 32px; border-radius: 50%;">
-								<a href="#">{{ $comment->user->name }}</a> said {{ $comment->created_at->diffForHumans() }}...
+								<a href="#">{{ $comment->user->name }}</a> said {{ $comment->created_at->diffForHumans() }}... {{ $comment->created_at != $comment->updated_at ? "(Edited)" : "" }}
 								
 								<form 
 								action="{{ 

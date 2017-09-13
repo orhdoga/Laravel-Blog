@@ -56,6 +56,20 @@ class ThreadController extends Controller
         //
     }
 
+        /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Tag $tag, Thread $thread)
+    {
+        return view("thread.show", [
+            "thread" => $thread,
+            "comments" => $thread->comments
+        ]);
+    }
+
     public function postComment(Tag $tag, Thread $thread) {
 
         $thread->addComment([
@@ -91,20 +105,6 @@ class ThreadController extends Controller
         ]);
 
         return redirect($thread->path());
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Tag $tag, Thread $thread)
-    {
-        return view("thread.show", [
-            "thread" => $thread,
-            "comments" => $thread->comments
-        ]);
     }
 
     /**

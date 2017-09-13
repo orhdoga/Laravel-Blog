@@ -83,8 +83,8 @@
 	            		<img src="{{ asset("/icons/" . $thread->user->icon) }}" class="thread-preview__user-icon img-responsive">
 	                	
 	                	<h4 class="thread-preview__title">
-	                		@if (strlen($thread->title) > 40)
-	                			{{ ucfirst(substr($thread->title, 0, 40)) }}..
+	                		@if (strlen($thread->title) > 37)
+	                			{{ ucfirst(substr($thread->title, 0, 37)) }}..
 	                		@else
 	                			{{ ucfirst($thread->title) }}
 	                		@endif	
