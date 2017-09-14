@@ -31,8 +31,4 @@ class Thread extends Model
     public function addComment(array $comment) {
         $this->comments()->create($comment);
     }
-
-    public function updateComment(array $comment) {
-        $this->comments()->update($comment);
-    }
 }

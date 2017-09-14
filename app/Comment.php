@@ -15,4 +15,12 @@ class Comment extends Model
     public function thread() {
     	return $this->belongsTo(Thread::class);
     }
+
+    public function updateComment(array $comment) {
+        $this->update($comment);
+    }
+
+    public function isEdited() {
+    	return $this->created_at != $this->updated_at;
+    }
 }

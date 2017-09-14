@@ -98,11 +98,13 @@ class ThreadController extends Controller
 
     public function updateComment(Tag $tag, Thread $thread, Comment $comment) {
 
-        $thread->updateComment([
+        $comment->updateComment([
             "user_id" => auth()->user()->id,
             "thread_id" => $thread->id,
             "body" => request()->input("body")
         ]);
+
+        $comment->save();
 
         return redirect($thread->path());
     }
