@@ -36,7 +36,7 @@
 
 		<div class="col-md-9">
 
-			@if (count($user->threads))
+			@if (count($user->threads || $user->comments))
 		
 				@foreach ($user->threads as $thread)
 					<div class="panel panel-default">

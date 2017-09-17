@@ -11,7 +11,7 @@
 				<div class="well text-center" style="height: 185px;">
 
 					<img src="{{ url("/icons/" . $thread->user->icon) }}" class="img-responsive" style="height: 100px; width: 110px; margin: 0 auto;">
-					<a href="#" class="user-flair">{{ $thread->user->name }}</a>
+					<a href="{{ url("/users/" . str_replace(' ', '-', strtolower($thread->user->name))) }}" class="user-flair">{{ str_replace('-', ' ', $thread->user->name) }}</a>
 					<p>Posts: 
 						{{ count($thread->user->threads()) }}
 					</p>
@@ -75,7 +75,7 @@
 							<div class="panel-heading">
 
 								<img src="{{ url("/icons/" . $comment->user->icon) }}" style="height: 32px; width: 32px; border-radius: 50%;">
-								<a href="#">{{ $comment->user->name }}</a> said {{ $comment->created_at->diffForHumans() }}...
+								<a href="{{ url("/users/" . str_replace(' ', '-', strtolower($comment->user->name))) }}">{{ $comment->user->name }}</a> said {{ $comment->created_at->diffForHumans() }}...
 
 							</div>
 
