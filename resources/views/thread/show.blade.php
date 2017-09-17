@@ -29,6 +29,11 @@
 							{{ str_plural('comment', count($comments)) }}.
 						</div>
 
+						<div style="margin-top: 10px;">
+							Click <a href="#">here</a> to <i class="fa fa-pencil" aria-hidden="true" style="padding-left: 3px; padding-right: 3px;"></i> this thread.
+							<span style="display: block;">Click <a href="#">here</a> to <i class="fa fa-trash" aria-hidden="true" style="padding-left: 3px; padding-right: 3px;"></i> this thread.</span>
+						</div>	
+
 					</div>
 
 				</div>

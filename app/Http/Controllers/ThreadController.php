@@ -42,7 +42,7 @@ class ThreadController extends Controller
      */
     public function create()
     {
-        //
+        return view("thread.form");
     }
 
     /**
