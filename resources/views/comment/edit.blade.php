@@ -8,11 +8,16 @@
 
 			<div class="col-md-3">
 
-				<div class="well text-center" style="height: 185px;">
+				<div class="well text-center user-information">
 
-					<img src="{{ url("/icons/" . $thread->user->icon) }}" class="img-responsive" style="height: 100px; width: 110px; margin: 0 auto;">
-					<a href="{{ url("/users/" . str_replace(' ', '-', strtolower($thread->user->name))) }}" class="user-flair">{{ str_replace('-', ' ', $thread->user->name) }}</a>
-					<p>Posts: 
+					<img src="{{ url("/icons/" . $thread->user->icon) }}" class="img-responsive user-information__icon">
+
+					<a href="{{ url("/users/" . str_replace(' ', '-', strtolower($thread->user->name))) }}" class="user-flair">
+						{{ str_replace('-', ' ', $thread->user->name) }}
+					</a>
+
+					<p>
+						Posts: 
 						{{ count($thread->user->threads()) }}
 					</p>
 
@@ -38,7 +43,10 @@
 					<div class="panel-body">
 
 						<div class="body">
-							Category: <a href="{{ url("/threads/" . $thread->tag->name) }}" class="tag">{{ $thread->tag->name }}</a>
+							Category: 
+							<a href="{{ url("/threads/" . $thread->tag->name) }}" class="tag">
+								{{ $thread->tag->name }}
+							</a>
 						</div>
 						
 					</div>
@@ -51,12 +59,14 @@
 
 				<div class="panel panel-default">
 
-					<div class="panel-heading" style="padding: 0;">
-						<img src="{{ url("/thumbnails/" . $thread->thumbnail) }}" class="img-responsive" style="width: 100%;">
+					<div class="panel-heading padding-zero">
+						<img src="{{ url("/thumbnails/" . $thread->thumbnail) }}" class="img-responsive width-hunderd">
 					</div>
 
 					<div class="panel-heading">
-						<h2 style="margin: 0;">{{ $thread->title }}</h2>
+						<h2 class="margin-zero">
+							{{ $thread->title }}
+						</h2>
 					</div>
 
 					<div class="panel-body">
@@ -74,8 +84,12 @@
 
 							<div class="panel-heading">
 
-								<img src="{{ url("/icons/" . $comment->user->icon) }}" style="height: 32px; width: 32px; border-radius: 50%;">
-								<a href="{{ url("/users/" . str_replace(' ', '-', strtolower($comment->user->name))) }}">{{ $comment->user->name }}</a> said {{ $comment->created_at->diffForHumans() }}...
+								<img src="{{ url("/icons/" . $comment->user->icon) }}" class="user-icon">
+
+								<a href="{{ url("/users/" . str_replace(' ', '-', strtolower($comment->user->name))) }}">
+									{{ $comment->user->name }}
+								</a> said 
+								{{ $comment->created_at->diffForHumans() }}...
 
 							</div>
 

@@ -18,6 +18,16 @@ i:hover {
     text-shadow: 0 0 0.9em #E50000;
 }
 
+.user-information {
+	height: 185px;
+}
+
+.user-information__icon {
+	height: 100px; 
+	width: 110px; 
+	margin: 0 auto;
+}
+
 .user-menu-icon {
 	height: 32.5px;
 	width: 32.5px;
@@ -27,9 +37,44 @@ i:hover {
 	left: 10px;
 }
 
+.user-icon {
+	height: 32px; 
+	width: 32px; 
+	border-radius: 50%;
+}
+
 .user-flair {
 	background: url(https://osbot.org/images/forum/fireworksForName.gif); 
 	color: black; 
 	font-weight: bold; 
 	text-shadow: 0 0 5px white;
+}
+
+.fa-padding {
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+.display-block {
+	display: block;
+}
+
+.width-hunderd {
+	width: 100%;
+}
+
+.margin-zero {
+	margin: 0;
+}
+
+.margin-ten-top {
+	margin-top: 10px;
+}
+
+.padding-zero {
+	padding: 0;
+}
+
+.margin-top-bottom {
+	margin: 3px 0;
 }

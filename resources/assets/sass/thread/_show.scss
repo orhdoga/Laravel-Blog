@@ -1,21 +1,21 @@
-.thread-show {
-	&__comment {
-		display: inline;
-	}
-	&__comment-delete {
-		margin-top: 8px;
-		cursor: pointer;
-	}
-	&__comment-edit {
-		color: inherit;
-		i {	
-			margin-top: 8px;
-			margin-right: 5px;
-		}	
-	}		
+.comment {
+	display: inline;
 }
 
-.tag {
+.comment-delete {
+	margin-top: 8px;
+	cursor: pointer;
+}
+
+.comment-edit {
+	color: inherit;
+	i {	
+		margin-top: 8px;
+		margin-right: 5px;
+	}	
+}
+
+.thread-tag {
 	background-color: #00b1b3; 
 	color: #fff; 
 	border-radius: 290486px;

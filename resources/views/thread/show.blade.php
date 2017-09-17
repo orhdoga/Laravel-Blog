@@ -8,9 +8,9 @@
 
 			<div class="col-md-3">
 
-				<div class="well text-center" style="height: 185px;">
+				<div class="well text-center user-information">
 
-					<img src="{{ url("/icons/" . $thread->user->icon) }}" class="img-responsive" style="height: 100px; width: 110px; margin: 0 auto;">
+					<img src="{{ url("/icons/" . $thread->user->icon) }}" class="img-responsive user-information__icon">
 					
 					<a href="{{ url("/users/" . str_replace(' ', '-', strtolower($thread->user->name))) }}" class="user-flair">{{ str_replace('-', ' ', $thread->user->name) }}</a>
 					
@@ -31,9 +31,15 @@
 							{{ str_plural('comment', count($comments)) }}.
 						</div>
 
-						<div style="margin-top: 10px;">
-							Click <a href="#">here</a> to <i class="fa fa-pencil" aria-hidden="true" style="padding-left: 3px; padding-right: 3px;" title="Edit"></i> this thread.
-							<span style="display: block;">Click <a href="#">here</a> to <i class="fa fa-trash" aria-hidden="true" style="padding-left: 3px; padding-right: 3px;" title="Delete"></i> this thread.</span>
+						<div class="margin-ten-top">
+							
+							Click <a href="#">here</a> to 
+							<i class="fa fa-pencil fa-padding" aria-hidden="true" title="Edit"></i> this thread.
+							
+							<span class="display-block">
+								Click <a href="#">here</a> to 
+								<i class="fa fa-trash fa-padding" aria-hidden="true" title="Delete"></i> this thread.
+							</span>
 						</div>	
 
 					</div>
@@ -45,7 +51,10 @@
 					<div class="panel-body">
 
 						<div class="body">
-							Category: <a href="{{ url("/threads/" . $thread->tag->name) }}" class="tag">{{ $thread->tag->name }}</a>
+							Category: 
+							<a href="{{ url("/threads/" . $thread->tag->name) }}" class="thread-tag">
+								{{ $thread->tag->name }}
+							</a>
 						</div>
 						
 					</div>
@@ -58,12 +67,12 @@
 
 				<div class="panel panel-default">
 
-					<div class="panel-heading" style="padding: 0;">
-						<img src="{{ url("/thumbnails/" . $thread->thumbnail) }}" class="img-responsive" style="width: 100%;">
+					<div class="panel-heading padding-zero">
+						<img src="{{ url("/thumbnails/" . $thread->thumbnail) }}" class="img-responsive" class="width-hunderd">
 					</div>
 
 					<div class="panel-heading">
-						<h2 style="margin: 0;">{{ $thread->title }}</h2>
+						<h2 class="margin-zero">{{ $thread->title }}</h2>
 					</div>
 
 					<div class="panel-body">
@@ -81,20 +90,21 @@
 
 							<div class="panel-heading">
 
-								<img src="{{ url("/icons/" . $comment->user->icon) }}" style="height: 32px; width: 32px; border-radius: 50%;">
+								<img src="{{ url("/icons/" . $comment->user->icon) }}" class="user-icon">
 								<a href="{{ url("/users/" . str_replace(' ', '-', strtolower($comment->user->name))) }}">{{ str_replace('-', ' ', $comment->user->name) }}</a> said {{ $comment->created_at->diffForHumans() }}... {{ $comment->isEdited() ? "(Edited)" : "" }}
 								
 								<form 
 								action="{{ 
 								url($thread->path() . "/" . $comment->id) }}" 
-								class="thread-show__comment" method="POST" id="form1">
+								class="comment" method="POST" id="form1">
 									{{ method_field("DELETE") }}
 									{{ csrf_field() }}
-									<i class="fa fa-times pull-right thread-show__comment-delete" aria-hidden="true" onclick="document.getElementById('form1').submit();"></i>
+									<i class="fa fa-times pull-right comment-delete" aria-hidden="true" onclick="document.getElementById('form1').submit();"></i>
 								</form>
-									<a href="{{ url($thread->path() . "/" . $comment->id . "/edit") }}" class="thread-show__comment-edit">
-										<i class="fa fa-pencil pull-right" aria-hidden="true"></i>
-									</a>	
+									
+								<a href="{{ url($thread->path() . "/" . $comment->id . "/edit") }}" class="comment-edit">
+									<i class="fa fa-pencil pull-right" aria-hidden="true"></i>
+								</a>	
 
 							</div>
 
@@ -117,7 +127,10 @@
 						</div>
 
 						<div class="form-group">
-							<button type="submit" class="btn btn-primary"><i class="fa fa-comment" aria-hidden="true"></i> Comment</button>
+							<button type="submit" class="btn btn-primary">
+								<i class="fa fa-comment" aria-hidden="true"></i> 
+								Comment
+							</button>
 						</div>
 					</form>
 				@else
