@@ -12,7 +12,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $admin = new \App\User;
-        $admin->name = "Admin";
+        $admin->name = str_replace(' ', '-', "Admin");
         $admin->email = "info@blog.com";
         $admin->password = bcrypt("admin");
         $admin->icon = "admin-icon.jpg";

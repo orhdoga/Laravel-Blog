@@ -44,12 +44,15 @@
 
                         @php
                             $threadId = isset($thread->id) ? $thread->id : "";
+                            $userId = isset($user->name) ? $user->name : "";
                         @endphp
 
                         @foreach ($tags as $tag) {
                             @if (Request::is('threads/' . $tag->name))
                                 {{ "class=active" }}
                             @elseif (Request::is('threads/' . $tag->name . '/' . $threadId))
+                                {{ "class=active" }}
+                            @elseif (Request::is('users/' . strtolower($userId)))
                                 {{ "class=active" }}
                             @else
                                 {{ "" }}
@@ -80,8 +83,8 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="#">
-                                            Profile
+                                        <a href="{{ url('/users/' . str_replace('-', ' ', strtolower(Auth::user()->name))) }}">
+                                            <i class="fa fa-user" aria-hidden="true"></i> Profile
                                         </a>
                                     </li>
                                     <li>

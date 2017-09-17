@@ -90,7 +90,7 @@
 	                		@endif	
 	                	</h4>
 
-	                	<p class="thread-preview__user">Started by <span class="user-flair">{{ $thread->user->name }}</span>, {{ $thread->created_at->diffForHumans() }}</p>
+	                	<p class="thread-preview__user">Started by <a href="{{ url("/users/" . str_replace(' ', '-', strtolower($thread->user->name))) }}"><span class="user-flair">{{ str_replace('-', ' ', $thread->user->name) }}</span></a>, {{ $thread->created_at->diffForHumans() }}</p>
 
 	                	<p class="thread-preview__description">{{ $thread->description }}</p>
 

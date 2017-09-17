@@ -15,6 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/users/{user}', function (App\User $user) {
+	return view('user-details', [
+		'user' => $user
+	]);
+});
+
 Auth::routes();
 
 Route::get('/threads', 'ThreadController@index');

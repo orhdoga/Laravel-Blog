@@ -11,9 +11,11 @@
 				<div class="well text-center" style="height: 185px;">
 
 					<img src="{{ url("/icons/" . $thread->user->icon) }}" class="img-responsive" style="height: 100px; width: 110px; margin: 0 auto;">
-					<a href="#" class="user-flair">{{ $thread->user->name }}</a>
+					
+					<a href="{{ url("/users/" . str_replace(' ', '-', strtolower($thread->user->name))) }}" class="user-flair">{{ str_replace('-', ' ', $thread->user->name) }}</a>
+					
 					<p>Posts: 
-						{{ count($thread->user->threads()) }}
+						{{ count($thread->user->threads) }}
 					</p>
 
 				</div>
@@ -30,8 +32,8 @@
 						</div>
 
 						<div style="margin-top: 10px;">
-							Click <a href="#">here</a> to <i class="fa fa-pencil" aria-hidden="true" style="padding-left: 3px; padding-right: 3px;"></i> this thread.
-							<span style="display: block;">Click <a href="#">here</a> to <i class="fa fa-trash" aria-hidden="true" style="padding-left: 3px; padding-right: 3px;"></i> this thread.</span>
+							Click <a href="#">here</a> to <i class="fa fa-pencil" aria-hidden="true" style="padding-left: 3px; padding-right: 3px;" title="Edit"></i> this thread.
+							<span style="display: block;">Click <a href="#">here</a> to <i class="fa fa-trash" aria-hidden="true" style="padding-left: 3px; padding-right: 3px;" title="Delete"></i> this thread.</span>
 						</div>	
 
 					</div>
@@ -80,7 +82,7 @@
 							<div class="panel-heading">
 
 								<img src="{{ url("/icons/" . $comment->user->icon) }}" style="height: 32px; width: 32px; border-radius: 50%;">
-								<a href="#">{{ $comment->user->name }}</a> said {{ $comment->created_at->diffForHumans() }}... {{ $comment->isEdited() ? "(Edited)" : "" }}
+								<a href="{{ url("/users/" . str_replace(' ', '-', strtolower($comment->user->name))) }}">{{ str_replace('-', ' ', $comment->user->name) }}</a> said {{ $comment->created_at->diffForHumans() }}... {{ $comment->isEdited() ? "(Edited)" : "" }}
 								
 								<form 
 								action="{{ 

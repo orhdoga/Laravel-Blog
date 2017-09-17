@@ -8,7 +8,7 @@
 
 		<div class="col-md-12 well">
 
-			<form style="margin-bottom: 80px;">
+			<form>
 
 				<div class="form-group">
 					<label><i class="fa fa-pencil" aria-hidden="true"></i> Title</label>
