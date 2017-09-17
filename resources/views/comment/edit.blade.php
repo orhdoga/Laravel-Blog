@@ -18,7 +18,7 @@
 
 					<p>
 						Posts: 
-						{{ count($thread->user->threads()) }}
+						{{ count($thread->user->threads) }}
 					</p>
 
 				</div>
