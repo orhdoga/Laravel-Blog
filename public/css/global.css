@@ -78,3 +78,7 @@ i:hover {
 .margin-top-bottom {
 	margin: 3px 0;
 }
+
+.display-none {
+	display: none !important;
+}

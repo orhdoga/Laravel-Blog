@@ -8,20 +8,22 @@
 
 		<div class="col-md-12 well">
 
-			<form>
+			<form method="POST" action="{{ url('/threads') }}" enctype="multipart/form-data">
+
+				{{ csrf_field() }}
 
 				<div class="form-group">
-					<label>
+					<label for="title">
 						<i class="fa fa-pencil" aria-hidden="true"></i> Title
 					</label>
-					<input type="text" class="form-control" required>
+					<input id="title" type="text" class="form-control" name="title" required>
 				</div>
 
 				<div class="form-group">
-					<label>
+					<label for="description">
 						<i class="fa fa-info-circle" aria-hidden="true"></i> Description
 					</label>
-					<textarea type="text" class="form-control" required></textarea>
+					<textarea id="description" type="text" class="form-control" name="description" required></textarea>
 				</div>	
 
 				<div class="form-group">
@@ -29,8 +31,11 @@
 						<i class="fa fa-tag" aria-hidden="true"></i> 
 						Tag
 					</label>
-					<select class="form-control" required>
+					<select class="form-control" name="tag_id" required>
 						<option value="" class="display-none">Choose A Tag</option>
+						@foreach ($tags as $tag)
+							<option value="{{ $tag->id }}">{{ $tag->name }}</option>
+						@endforeach 
 					</select>
 				</div>
 
@@ -38,15 +43,15 @@
 					<label>
 						<i class="fa fa-picture-o" aria-hidden="true"></i> Thumbnail
 					</label>
-					<input type="file">
+					<input type="file" name="thumbnail">
 				</div>
 
 				<div class="form-group">
-					<textarea class="form-control thread-body" required></textarea>
+					<textarea class="form-control thread-body" name="body" required></textarea>
 				</div>
 
 				<div class="form-group">
-					<button class="btn btn-primary pull-right">Submit</button>
+					<button type="submit" class="btn btn-primary pull-right">Submit</button>
 				</div>
 
 			</form>	

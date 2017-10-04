@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\{Tag, Thread, Comment};
+use Image;
 
 class ThreadController extends Controller
 {
@@ -51,9 +52,28 @@ class ThreadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Thread $thread)
     {
-        //
+        if ($request->hasFile('thumbnail')) {
+
+            $thumbnail = $request->file('thumbnail');
+            
+            $filename = time() . '.' . $thumbnail->getClientOriginalExtension();
+            $location = public_path('/thumbnails/' . $filename);
+            
+            Image::make($thumbnail)->save($location);
+        }
+
+        Thread::create([
+            "user_id" => auth()->id(),
+            "tag_id" => $request->input('tag_id'),
+            "title" => $request->input('title'),
+            "description" => $request->input('description'),
+            "thumbnail" => $thread->thumbnail = $filename,
+            "body" => $request->input('body')
+        ]);
+
+        return redirect("/threads");
     }
 
         /**
@@ -73,7 +93,7 @@ class ThreadController extends Controller
     public function postComment(Tag $tag, Thread $thread) {
 
         $thread->addComment([
-            "user_id" => auth()->user()->id,
+            "user_id" => auth()->id(),
             "thread_id" => $thread->id,
             "body" => request()->input("body")
         ]);

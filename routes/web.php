@@ -25,6 +25,7 @@ Auth::routes();
 
 Route::get('/threads', 'ThreadController@index');
 Route::get('/threads/create', 'ThreadController@create');
+Route::post('/threads', 'ThreadController@store');
 Route::get('/threads/{tag}', 'ThreadController@sortByTag');
 Route::get('/threads/{tag}/{thread}', 'ThreadController@show');
 
