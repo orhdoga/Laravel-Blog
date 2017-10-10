@@ -35,11 +35,14 @@
 							
 							Click <a href="#">here</a> to 
 							<i class="fa fa-pencil fa-padding" aria-hidden="true" title="Edit"></i> this thread.
-							
+
 							<span class="display-block">
-								Click <a href="#">here</a> to 
+								Click <a href="#" data-toggle="modal" data-target="#myModal">here</a> to 
 								<i class="fa fa-trash fa-padding" aria-hidden="true" title="Delete"></i> this thread.
 							</span>
+
+							@include('partials.delete-modal')
+
 						</div>	
 
 					</div>

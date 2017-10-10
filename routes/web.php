@@ -28,6 +28,7 @@ Route::get('/threads/create', 'ThreadController@create');
 Route::post('/threads', 'ThreadController@store');
 Route::get('/threads/{tag}', 'ThreadController@sortByTag');
 Route::get('/threads/{tag}/{thread}', 'ThreadController@show');
+Route::delete('/threads/{tag}/{thread}', 'ThreadController@destroy');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::post('/threads/{tag}/{thread}', 'ThreadController@postComment');
