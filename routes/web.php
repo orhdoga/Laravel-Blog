@@ -28,6 +28,8 @@ Route::get('/threads/create', 'ThreadController@create');
 Route::post('/threads', 'ThreadController@store');
 Route::get('/threads/{tag}', 'ThreadController@sortByTag');
 Route::get('/threads/{tag}/{thread}', 'ThreadController@show');
+Route::get('/threads/{tag}/{thread}/edit', 'ThreadController@edit');
+Route::patch('/threads/{tag}/{thread}', 'ThreadController@update');
 Route::delete('/threads/{tag}/{thread}', 'ThreadController@destroy');
 
 Route::group(['middleware' => ['auth']], function () {

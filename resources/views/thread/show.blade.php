@@ -33,7 +33,7 @@
 
 						<div class="margin-ten-top">
 							
-							Click <a href="#">here</a> to 
+							Click <a href="{{ url('/threads/' . $thread->tag->name . '/' . $thread->id . '/edit') }}">here</a> to 
 							<i class="fa fa-pencil fa-padding" aria-hidden="true" title="Edit"></i> this thread.
 
 							<span class="display-block">

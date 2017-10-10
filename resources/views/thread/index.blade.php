@@ -104,7 +104,13 @@
 	                		</a>, {{ $thread->created_at->diffForHumans() }}
 	                	</p>
 
-	                	<p class="preview-description">{{ $thread->description }}</p>
+	                	<p class="preview-description">
+	                		@if (strlen($thread->description) > 200)
+	                			{{ ucfirst(substr($thread->description, 0, 200)) }}..
+	                		@else
+	                			{{ ucfirst($thread->description) }}
+	                		@endif	
+	                	</p>
 
 	                	<a href="{{ url($thread->path()) }}">
 	                		<button class="btn btn-primary">

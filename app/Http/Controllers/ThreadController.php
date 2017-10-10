@@ -135,9 +135,11 @@ class ThreadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Tag $tag, Thread $thread)
     {
-        //
+        return view('thread.form', [
+            "thread" => $thread
+        ]);
     }
 
     /**
@@ -147,9 +149,30 @@ class ThreadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Tag $tag, Thread $thread)
     {
-        //
+        if ($request->hasFile('thumbnail')) {
+
+            $thumbnail = $request->file('thumbnail');
+            
+            $filename = time() . '.' . $thumbnail->getClientOriginalExtension();
+            $location = public_path('/thumbnails/' . $filename);
+            
+            Image::make($thumbnail)->save($location);
+        }
+
+        $thread->update([
+            "user_id" => auth()->id(),
+            "tag_id" => $request->input('tag_id'),
+            "title" => $request->input('title'),
+            "description" => $request->input('description'),
+            "thumbnail" => $thread->thumbnail = $filename,
+            "body" => $request->input('body')
+        ]);
+
+        $thread->save();
+
+        return redirect($thread->path());    
     }
 
     /**

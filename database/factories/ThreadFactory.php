@@ -9,7 +9,7 @@ $factory->define(App\Thread::class, function (Faker $faker) {
         },
         "tag_id" => rand(1, 3),
         "thumbnail" => "thumbnail-" . rand(1, 11) . ".jpg",
-        "title" => $faker->sentence,
+        "title" => trim($faker->sentence, '.'),
         "description" => $faker->paragraph,
         "body" => $faker->paragraph
     ];
