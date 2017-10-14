@@ -25,7 +25,7 @@
 				</a>
 				
 				@foreach ($tags as $tag)
-					<a href="{{ url("/threads/" . $tag->name) }}" class="btn btn-primary {{ (Request::is('threads/' . $tag->name) ? 'active' : '') }}">
+					<a href="{{ url('/threads/' . $tag->name) }}" class="btn btn-primary {{ (Request::is('threads/' . $tag->name) ? 'active' : '') }}">
 						{{ $tag->name }}
 					</a>
 				@endforeach
@@ -89,7 +89,7 @@
 	                	
 	                	<h4 class="preview-title">
 	                		@if (strlen($thread->title) > 37)
-	                			{{ ucfirst(substr($thread->title, 0, 37)) }}..
+	                			{{ ucfirst(substr($thread->title, 0, 37)) }}
 	                		@else
 	                			{{ ucfirst($thread->title) }}
 	                		@endif	
@@ -106,7 +106,7 @@
 
 	                	<p class="preview-description">
 	                		@if (strlen($thread->description) > 200)
-	                			{{ ucfirst(substr($thread->description, 0, 200)) }}..
+	                			{{ ucfirst(substr($thread->description, 0, 200)) }}
 	                		@else
 	                			{{ ucfirst($thread->description) }}
 	                		@endif	

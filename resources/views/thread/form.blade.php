@@ -60,7 +60,7 @@
 				</div>
 
 				<div class="form-group">
-					<button type="submit" class="btn btn-primary pull-right">Submit</button>
+					<button type="submit" class="btn btn-primary pull-right">{{ isset($thread) ? 'Update' : 'Submit' }}</button>
 				</div>
 
 			</form>	

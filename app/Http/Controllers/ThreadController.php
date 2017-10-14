@@ -18,18 +18,20 @@ class ThreadController extends Controller
     {
         $s = $request->input("s");
         $threads = Thread::with("tag")
+            ->latest()
             ->search($s)
             ->paginate(10);        
 
         return view('thread.index', [
-            "tags" => Tag::all(),
+            "tags" => Tag::latest(),
             "threads" => $threads,
             "s" => $s
         ]);
     }
 
-    public function sortByTag(Tag $tag) {
-        $threads = $tag->threads()->paginate(10);
+    public function sortByTag(Tag $tag) 
+    {
+        $threads = $tag->threads()->latest()->paginate(10);
 
         return view("thread.index", [
             "threads" => $threads
@@ -64,7 +66,7 @@ class ThreadController extends Controller
             Image::make($thumbnail)->save($location);
         }
 
-        Thread::create([
+        $thread = Thread::create([
             "user_id" => auth()->id(),
             "tag_id" => $request->input('tag_id'),
             "title" => $request->input('title'),
@@ -72,6 +74,8 @@ class ThreadController extends Controller
             "thumbnail" => $thread->thumbnail = $filename,
             "body" => $request->input('body')
         ]);
+
+        flash(e('You have successfully created ' . $thread->title . '!'), 'success');
 
         return redirect("/threads");
     }
@@ -172,6 +176,8 @@ class ThreadController extends Controller
 
         $thread->save();
 
+        flash(e('You have successfully updated ' . $thread->title . '!'), 'info');
+
         return redirect($thread->path());    
     }
 
@@ -184,6 +190,8 @@ class ThreadController extends Controller
     public function destroy(Tag $tag, Thread $thread)
     {
         $thread->delete();
+
+        flash(e('You have successfully deleted ' . $thread->title . '!'), 'danger');
 
         return redirect('/threads');
     }
