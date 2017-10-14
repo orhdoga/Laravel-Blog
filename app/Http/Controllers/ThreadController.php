@@ -121,7 +121,8 @@ class ThreadController extends Controller
 
         return view("comment.edit", [
             "thread" => $thread,
-            "comments" => $thread->comments
+            "comments" => $thread->comments,
+            "comment" => $comment
         ]);
     }
 

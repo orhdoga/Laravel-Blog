@@ -77,30 +77,24 @@
 
 				</div>
 
-				@if (count($thread->comments))
+				<div class="panel panel-default">
 
-					@foreach ($comments as $comment)
-						<div class="panel panel-default">
+					<div class="panel-heading">
 
-							<div class="panel-heading">
+						<img src="{{ url("/icons/" . $comment->user->icon) }}" class="user-icon">
 
-								<img src="{{ url("/icons/" . $comment->user->icon) }}" class="user-icon">
+						<a href="{{ url("/users/" . str_replace(' ', '-', strtolower($comment->user->name))) }}">
+							{{ $comment->user->name }}
+						</a> said 
+						{{ $comment->created_at->diffForHumans() }}...
 
-								<a href="{{ url("/users/" . str_replace(' ', '-', strtolower($comment->user->name))) }}">
-									{{ $comment->user->name }}
-								</a> said 
-								{{ $comment->created_at->diffForHumans() }}...
+					</div>
 
-							</div>
+					<div class="panel-body">
+						<div class="body">{{ $comment->body }}</div>
+					</div>
 
-							<div class="panel-body">
-								<div class="body">{{ $comment->body }}</div>
-							</div>
-
-						</div>
-					@endforeach	
-
-				@endif
+				</div>
 
 				@if (Auth::check())
 					<form method="POST" action="{{ url($thread->path() . "/" . $comment->id) }}">
