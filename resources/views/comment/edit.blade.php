@@ -44,7 +44,7 @@
 
 						<div class="body">
 							Category: 
-							<a href="{{ url("/threads/" . $thread->tag->name) }}" class="tag">
+							<a href="{{ url("/threads/" . $thread->tag->name) }}" class="thread-tag">
 								{{ $thread->tag->name }}
 							</a>
 						</div>

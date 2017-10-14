@@ -108,6 +108,8 @@ class ThreadController extends Controller
 
     public function deleteComment(Tag $tag, Thread $thread, Comment $comment) 
     {
+        $this->authorize('delete', $comment);
+
         $comment->delete();
 
         return redirect($thread->path());
@@ -115,6 +117,8 @@ class ThreadController extends Controller
 
     public function editComment(Tag $tag, Thread $thread, Comment $comment) 
     {
+        $this->authorize('update', $comment);
+
         return view("comment.edit", [
             "thread" => $thread,
             "comments" => $thread->comments
@@ -123,7 +127,7 @@ class ThreadController extends Controller
 
     public function updateComment(Tag $tag, Thread $thread, Comment $comment) 
     {
-        $comment->updateComment([
+        $comment->update([
             "user_id" => auth()->user()->id,
             "thread_id" => $thread->id,
             "body" => request()->input("body")
@@ -142,6 +146,8 @@ class ThreadController extends Controller
      */
     public function edit(Tag $tag, Thread $thread)
     {
+        $this->authorize('update', $thread);
+
         return view('thread.form', [
             "thread" => $thread
         ]);
@@ -190,6 +196,8 @@ class ThreadController extends Controller
      */
     public function destroy(Tag $tag, Thread $thread)
     {
+        $this->authorize('delete', $thread);
+
         $thread->delete();
 
         flash(e('You have successfully deleted ' . $thread->title . '!'), 'danger');

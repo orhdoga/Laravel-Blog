@@ -33,13 +33,17 @@
 
 						<div class="margin-ten-top">
 							
-							Click <a href="{{ url('/threads/' . $thread->tag->name . '/' . $thread->id . '/edit') }}">here</a> to 
-							<i class="fa fa-pencil fa-padding" aria-hidden="true" title="Edit"></i> this thread.
+							@can ('update', $thread)
+								Click <a href="{{ url('/threads/' . $thread->tag->name . '/' . $thread->id . '/edit') }}">here</a> to 
+								<i class="fa fa-pencil fa-padding" aria-hidden="true" title="Edit"></i> this thread.
+							@endcan
 
-							<span class="display-block">
-								Click <a href="#" data-toggle="modal" data-target="#myModal">here</a> to 
-								<i class="fa fa-trash fa-padding" aria-hidden="true" title="Delete"></i> this thread.
-							</span>
+							@can ('delete', $thread)
+								<span class="display-block">
+									Click <a href="#" data-toggle="modal" data-target="#myModal">here</a> to 
+									<i class="fa fa-trash fa-padding" aria-hidden="true" title="Delete"></i> this thread.
+								</span>
+							@endcan	
 
 							@include('partials.delete-modal')
 
@@ -96,18 +100,22 @@
 								<img src="{{ url("/icons/" . $comment->user->icon) }}" class="user-icon">
 								<a href="{{ url("/users/" . str_replace(' ', '-', strtolower($comment->user->name))) }}">{{ str_replace('-', ' ', $comment->user->name) }}</a> said {{ $comment->created_at->diffForHumans() }}... {{ $comment->isEdited() ? "(Edited)" : "" }}
 								
-								<form 
-								action="{{ 
-								url($thread->path() . "/" . $comment->id) }}" 
-								class="comment" method="POST" id="form1">
-									{{ method_field("DELETE") }}
-									{{ csrf_field() }}
-									<i class="fa fa-times pull-right comment-delete" aria-hidden="true" onclick="document.getElementById('form1').submit();"></i>
-								</form>
+								@can ('delete', $comment)
+									<form 
+									action="{{ 
+									url($thread->path() . "/" . $comment->id) }}" 
+									class="comment" method="POST" id="form1">
+										{{ method_field("DELETE") }}
+										{{ csrf_field() }}
+										<i class="fa fa-times pull-right comment-delete" aria-hidden="true" onclick="document.getElementById('form1').submit();"></i>
+									</form>
+								@endcan
 									
-								<a href="{{ url($thread->path() . "/" . $comment->id . "/edit") }}" class="comment-edit">
-									<i class="fa fa-pencil pull-right" aria-hidden="true"></i>
-								</a>	
+								@can ('update', $comment)	
+									<a href="{{ url($thread->path() . "/" . $comment->id . "/edit") }}" class="comment-edit">
+										<i class="fa fa-pencil pull-right" aria-hidden="true"></i>
+									</a>
+								@endcan		
 
 							</div>
 

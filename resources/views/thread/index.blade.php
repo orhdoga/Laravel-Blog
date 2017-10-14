@@ -75,7 +75,7 @@
 
 	<div class="row">
 
-		@foreach ($threads as $thread)
+		@forelse ($threads as $thread)
 			
 			<div class="col-md-6">
 			
@@ -131,7 +131,9 @@
     	</div><div class="row">
 	@endif
 
-	@endforeach
+	@empty
+		<p>There are no relevant results at this time.</p>
+	@endforelse
 
 	<div class="row">
 
