@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\{Tag, Thread, Comment};
 use Image;
+use DB;
 
 class ThreadController extends Controller
 {
@@ -20,7 +21,7 @@ class ThreadController extends Controller
         $threads = Thread::with("tag")
             ->latest()
             ->search($s)
-            ->paginate(10);        
+            ->paginate(10);               
 
         return view('thread.index', [
             "tags" => Tag::latest(),
@@ -94,8 +95,8 @@ class ThreadController extends Controller
         ]);
     }
 
-    public function postComment(Tag $tag, Thread $thread) {
-
+    public function postComment(Tag $tag, Thread $thread) 
+    {
         $thread->addComment([
             "user_id" => auth()->id(),
             "thread_id" => $thread->id,
@@ -105,23 +106,23 @@ class ThreadController extends Controller
         return redirect($thread->path());
     }
 
-    public function deleteComment(Tag $tag, Thread $thread, Comment $comment) {
-
+    public function deleteComment(Tag $tag, Thread $thread, Comment $comment) 
+    {
         $comment->delete();
 
         return redirect($thread->path());
     }
 
-    public function editComment(Tag $tag, Thread $thread, Comment $comment) {
-
+    public function editComment(Tag $tag, Thread $thread, Comment $comment) 
+    {
         return view("comment.edit", [
             "thread" => $thread,
             "comments" => $thread->comments
         ]);
     }
 
-    public function updateComment(Tag $tag, Thread $thread, Comment $comment) {
-
+    public function updateComment(Tag $tag, Thread $thread, Comment $comment) 
+    {
         $comment->updateComment([
             "user_id" => auth()->user()->id,
             "thread_id" => $thread->id,
