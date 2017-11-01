@@ -18,10 +18,11 @@ class ThreadController extends Controller
     public function index(Request $request)
     {
         $s = $request->input("s");
+        
         $threads = Thread::with("tag")
             ->latest()
             ->search($s)
-            ->paginate(10);               
+            ->paginate(100);               
 
         return view('thread.index', [
             "tags" => Tag::latest(),
@@ -106,15 +107,6 @@ class ThreadController extends Controller
         return redirect($thread->path());
     }
 
-    public function deleteComment(Tag $tag, Thread $thread, Comment $comment) 
-    {
-        $this->authorize('delete', $comment);
-
-        $comment->delete();
-
-        return redirect($thread->path());
-    }
-
     public function editComment(Tag $tag, Thread $thread, Comment $comment) 
     {
         $this->authorize('update', $comment);
@@ -129,12 +121,21 @@ class ThreadController extends Controller
     public function updateComment(Tag $tag, Thread $thread, Comment $comment) 
     {
         $comment->update([
-            "user_id" => auth()->user()->id,
+            "user_id" => $thread->user->id,
             "thread_id" => $thread->id,
             "body" => request()->input("body")
         ]);
 
         $comment->save();
+
+        return redirect($thread->path());
+    }
+
+    public function deleteComment(Tag $tag, Thread $thread, Comment $comment) 
+    {
+        $this->authorize('delete', $comment);
+
+        $comment->delete();
 
         return redirect($thread->path());
     }

@@ -75,7 +75,7 @@
 				<div class="panel panel-default">
 
 					<div class="panel-heading padding-zero">
-						<img src="{{ url("/thumbnails/" . $thread->thumbnail) }}" class="img-responsive" class="width-hunderd">
+						<img src="{{ url("/thumbnails/" . $thread->thumbnail) }}" class="img-responsive width-hunderd">
 					</div>
 
 					<div class="panel-heading">

@@ -8,29 +8,44 @@ class Thread extends Model
 {
     protected $guarded = [];
 
-    public function path() {
+    public function path() 
+    {
     	return "/threads/" . $this->tag->name . "/" . $this->id;
     }
 
-    public function user() {
+    public function user() 
+    {
     	return $this->belongsTo(User::class);
     }
 
-    public function tag() {
+    public function tag() 
+    {
     	return $this->belongsTo(Tag::class);
     }
 
-    public function scopeSearch($query, $s) {
+    public function scopeSearch($query, $s) 
+    {
     	return $query->where("title", "like", "%" . $s . "%")
     		->orWhere("description", "like", "%" . $s . "%")
     		->orWhere("body", "like", "%" . $s . "%");
     }
 
-    public function comments() {
+    public function comments() 
+    {
         return $this->hasMany(Comment::class)->orderBy('created_at', 'desc');
     }
 
-    public function addComment(array $comment) {
+    public function addComment(array $comment) 
+    {
         $this->comments()->create($comment);
+    }
+
+    protected static function boot() 
+    {
+        parent::boot();
+
+        static::deleting(function (Thread $thread) {
+             $thread->comments()->delete();
+        });
     }
 }

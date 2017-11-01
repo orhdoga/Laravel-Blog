@@ -75,7 +75,7 @@
 							</span> has replied to a topic in 
 							
 							<a href="{{ url("/threads/" . $comment->thread->tag->name) }}">
-								{{ $comment->thread->tag->name }}
+								{{ 	$comment->thread->tag->name }}
 							</a> -
 
 							<a href="{{ url("/threads/" . $comment->thread->tag->name . "/" . $comment->thread->id) }}">

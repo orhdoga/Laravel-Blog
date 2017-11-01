@@ -99,9 +99,9 @@
 	                		Started by 
 	                		<a href="{{ url("/users/" . str_replace(' ', '-', strtolower($thread->user->name))) }}">
 	                			<span class="user-flair">
-	                				{{ str_replace('-', ' ', $thread->user->name) }}
+	                				{{ str_replace('-', ' ', $thread->user->name) }},
 	                			</span>
-	                		</a>, {{ $thread->created_at->diffForHumans() }}
+	                		</a> {{ $thread->created_at->diffForHumans() }}
 	                	</p>
 
 	                	<p class="preview-description">
