@@ -8,7 +8,7 @@
 
 		<div class="col-md-12">
 
-			<h1><i class="fa fa-rss" aria-hidden="true"></i> Latest blogs!</h1>
+			<h1>Latest blogs!</h1>
 
 		</div>
 

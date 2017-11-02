@@ -21,6 +21,15 @@ Route::get('/users/{user}', function (App\User $user) {
 	]);
 });
 
+Route::get('/users', function () {
+	return view('user-index', [
+		'users' => App\User::paginate(15)
+	]);
+});
+
+
+Route::delete('/users', 'HomeController@userDestroy')->name('users.destroy');
+
 Auth::routes();
 
 Route::get('/threads', 'ThreadController@index');
