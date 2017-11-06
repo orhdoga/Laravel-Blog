@@ -29,7 +29,9 @@ class HomeController extends Controller
 
     public function userDestroy(Request $request)
     {
-        User::destroy($request->users); 
+        User::destroy($request->users);
+
+        flash(e('You have successfully deleted the thread(s)!'), 'danger'); 
         
         return back();
     }

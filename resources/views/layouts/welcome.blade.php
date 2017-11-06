@@ -63,11 +63,19 @@
                         >
                             <a href="{{ url('/threads') }}"><i class="fa fa-users" aria-hidden="true"></i> Community</a>
                         </li>
+
                         @if (Auth::user())
                             <li {{{ (Request::is('threads/create') ? 'class=active' : '') }}}>
                                 <a href="{{ url('/threads/create') }}"><i class="fa fa-plus-square" aria-hidden="true"></i> New Thread</a>
                             </li>
-                        @endif    
+                        @endif
+
+                        @if (Auth::id() === 1)
+                            <li {{ (Request::is('users') ? 'class=active' : '') }}>
+                                <a href="{{ url('/users') }}"><i class="fa fa-user" aria-hidden="true"></i> Users</a>
+                            </li>
+                        @endif
+                            
                     </ul>
 
                     <!-- Right Side Of Navbar -->
